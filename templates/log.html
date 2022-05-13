@@ -1,0 +1,44 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - To-do App</title>
+    <link rel="stylesheet" href="{%static './assets/css/style.css'%}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main2">
+      <nav></nav>
+      <form action="{% url 'home'%}" class="sign_up">
+        <div class="w_form">
+          <h2>Login</h2>
+          <div class="pi">
+            <label for="name">Email</label>
+            <input type="text" placeholder="@example.com" />
+          </div>
+
+          <div class="pi">
+            <label for="name">Password</label>
+            <input type="password" />
+          </div>
+
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- <footer>
+      <div class="container">
+        <p>All Right Reserved</p>
+      </div>
+    </footer> -->
+  </body>
+</html>

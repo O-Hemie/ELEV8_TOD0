@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do App</title>
+    <link rel="stylesheet" href="{% static './assets/css/style.css'%}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div class="top">
+          <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+          <div class="search">
+            <input type="text" placeholder="search" />
+          </div>
+
+          <div class="choose">
+            <button><a href="">Yesterday</a></button>
+            <button class="action"><a href="">Today</a></button>
+            <button><a href="">Tommorrow</a></button>
+          </div>
+        </div>
+        <hr />
+
+        <div class="custom">
+          <h3>Custom</h3>
+          <div class="ii">
+            <input type="date" />
+          </div>
+        </div>
+      </aside>
+      <section>
+        <div class="top2">
+          <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+          <!-- <div class="sign">
+            <button><a href="">Sign Up</a></button>
+            <button><a href="">Sign In</a></button>
+          </div> -->
+
+          <a href="{% url 'profile'%}"><img src="{%static 'images/img_avatar.jpg'%}" alt="" /></a>
+        </div>
+        <form action="{% url 'add_task'%}" class="f-form" method="POST">
+          {% csrf_token %}
+          <input name="task" type="text" placeholder="Add a new task" />
+          <button class="sub">Add</button>
+        </form>
+
+        <div class="dialog" id="ghost">
+          <h4>
+            Hey,We noticed you haven't signed up to use this app.Kindly click on
+            the <b>Register</b>
+            button above to get started
+          </h4>
+        </div>
+        <div class="per_task-wrap">
+          {% for each in my_tasks %}
+          <div class="per_task" id="this">
+            <h3 id="innerT">{{each}}</h3>
+            <div class="edit_it">
+              <button class="ram" id="{{each.id}}" onclick="getEdit(this)">
+                <img src="{%static './svg/edit-svgrepo-com.svg'%}" alt="" />
+              </button>
+              <button class="delete" id="{{each.id}}" onclick="getId(this)">
+                <img src="{%static './svg/delete-svgrepo-com.svg'%}" alt="" />
+              </button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- OVERLAY -->
+      <div class="overlay" id="ghost">
+        <div class="error_card">
+          <div class="card_top">
+            <h2>🗑 Are you sure you want delete ?</h2>
+          </div>
+          <form action="{% url 'delete'%}" class="card_c">
+            <input type="hidden" name="item_to_delete" id="tosend" value="" />
+            <p>
+              Please be aware that deleting this particular content can not be
+              reversed.You then need to create a new one
+            </p>
+            <div class="cancel">
+              <button type="submit">Yes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- INPUT OVERLAY -->
+      <div class="overlay forInput" id="ghost">
+        <div class="error_card">
+          <div class="card_top">
+            <h2>📝 Edit Task</h2>
+          </div>
+          <form action="{% url 'edittask'%}" class="card_c" method="POST">
+            {%csrf_token%}
+            <input
+              name = "edit_text"
+              type="text"
+              placeholder="Edit Task"
+              id="unique"
+              style="
+                width: 100%;
+                padding: 15px;
+                border-radius: 5px;
+                border: 1px solid #d0d0d0;
+              "
+            />
+            <input type="hidden" name="edit_id" id="sentForm" value="" />
+            <p>
+              <!-- Please be aware that deleting this particular content can not be
+              reversed.You then need to create a new one -->
+            </p>
+            <div class="cancel">
+              <button type="submit">Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const deleteBtn = document.querySelectorAll(".delete");
+      const askUser = document.querySelector(".overlay");
+      const editTask = document.querySelector(".forInput");
+
+      function getId(btn) {
+        askUser.style.display = "flex";
+        document.getElementById("tosend").value = btn.id;
+      }
+
+      function getEdit(edit) {
+        editTask.style.display = "flex";
+        document.getElementById("sentForm").value = edit.id;
+        document.getElementById("unique").value =
+        document.getElementById("innerT").innerHTML;
+      }
+    </script>
+  </body>
+</html>

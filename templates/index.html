@@ -1,0 +1,75 @@
+{% load static%} 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do App</title>
+    <link rel="stylesheet" href="{%static './assets/css/style.css'%}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <aside>
+        <div class="top">
+          <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+          <div class="search">
+            <input type="text" placeholder="search" />
+          </div>
+
+          <div class="choose">
+            <button><a href="">Yesterday</a></button>
+            <button class="action"><a href="">Today</a></button>
+            <button><a href="">Tommorrow</a></button>
+          </div>
+        </div>
+        <hr />
+
+        <div class="custom">
+          <h3>Custom</h3>
+          <div class="ii">
+            <input type="date" />
+          </div>
+        </div>
+      </aside>
+      <section>
+        <div class="top2">
+          <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+          <div class="sign">
+            <button><a href="{% url 'sign'%}">Register</a></button>
+            <button><a href="{% url 'log'%}">Log in</a></button>
+          </div>
+        </div>
+
+        <div class="dialog">
+          <h4>
+            Hey,We noticed you haven't signed up to use this app.Kindly click on
+            the <b>Register</b>
+            button above to get started
+          </h4>
+        </div>
+      </section>
+
+      <!-- OVERLAY -->
+      <!-- <div class="overlay">
+        <div class="dialog"></div>
+      </div> -->
+    </main>
+  </body>
+</html>

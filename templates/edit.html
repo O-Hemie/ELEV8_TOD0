@@ -1,0 +1,50 @@
+{%load static%} 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do App</title>
+    <link rel="stylesheet" href="{% static './assets/css/style.css'%}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main">
+      <nav></nav>
+      <form action="{% url 'profile'%}">
+        <div class="profile">
+          <div class="cover_pic">
+            <img src="{%static 'images/cover.jpg'%}" alt="" />
+          </div>
+
+          <div class="container edit">
+            <button type="submit">Update</button>
+
+            <div class="bio">
+              <img src="{%static 'images/img_avatar.jpg'%}" alt="" />
+              <label for="upload">+</label>
+              <input type="file" id="upload" style="display: none" />
+              <div class="b_text">
+                <input type="text" placeholder="Full Name" />
+                <textarea name="" id="" placeholder="Bio"></textarea>
+                <!-- <button>Frontend Developer</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer>
+      <div class="container">
+        <p>All Right Reserved</p>
+      </div>
+    </footer>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
